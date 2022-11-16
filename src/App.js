@@ -1,40 +1,59 @@
 import { useEffect, useState } from "react";
-import fahrPlan from "./data.js";
 import "./App.css";
 import Line from "./components/Line.js";
 
 function App() {
   const [toFrankfurt, setToFrankfurt] = useState([]);
   const [fromFrankfurt, setFromFrankfurt] = useState([]);
+  const [currentState, setCurrentState] = useState([]);
+  const [color, setColor] = useState(false);
 
   useEffect(() => {
-    const nachFrankfurt = fahrPlan.filter((item) =>
-      item.to.includes("Frankfurt")
-    );
-    const vonFrankfurt = fahrPlan.filter((item) =>
-      item.from.includes("Frankfurt")
-    );
-    setToFrankfurt(nachFrankfurt);
-    setFromFrankfurt(vonFrankfurt);
-  }, []);
-
-  console.log(toFrankfurt);
-  console.log(fromFrankfurt);
+    fetch("http://localhost:3001/")
+      .then((res) => res.json())
+      .then((data) => {
+        const nachFrankfurt = data.filter((item) =>
+          item.to.includes("Frankfurt")
+        );
+        setToFrankfurt(nachFrankfurt);
+        const vonFrankfurt = data.filter((item) =>
+          item.from.includes("Frankfurt")
+        );
+        setFromFrankfurt(vonFrankfurt);
+      });
+  }, [currentState]);
+  const clickHandle = (e) => {
+    e.target.value === "von"
+      ? setCurrentState(toFrankfurt, setColor(true))
+      :setCurrentState(fromFrankfurt, setColor(false));
+      
+      
+  };
 
   return (
     <div className="App">
       <div className="InApp">
-        <h1>DB Fahrplananzeige</h1>
+        <h2>DB Fahrplananzeige</h2>
         <div className="red_line"></div>
-        <button className="btn">von Frankfurt</button>
-        <button className="btn">nach Frankfurt</button>
-        
+        <button className="btn" value="von" style={{backgroundColor:color?"#ec001851":"#EC0016"}} onClick={clickHandle}>
+          von Frankfurt
+        </button>
+        <button className="btn" value="nach" style={{backgroundColor:color?"#EC0016":"#ec001851"}} onClick={clickHandle}>
+          nach Frankfurt
+        </button>
+
         <div>
-          {toFrankfurt.map((item) => (
-            <div key={item.to}>
-              <Line departure={item.to} arrival={item.from} departureTime={item.starttime} arrivalTime={item.endtime} />
-            </div>
-          ))}
+          {currentState.length > 0 &&
+            currentState.map((item) => (
+              <div key={item.to + item.starttime}>
+                <Line
+                  departure={item.to}
+                  arrival={item.from}
+                  departureTime={item.starttime}
+                  arrivalTime={item.endtime}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </div>
