@@ -10,7 +10,13 @@ function App() {
   const [color, setColor] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3001/")
+    fetch("http://localhost:3001/", {
+      mode: 'no-cors',
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const nachFrankfurt = data.filter((item) =>
