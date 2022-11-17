@@ -1,29 +1,32 @@
 import React from "react";
 import "../App.css";
 
-function Line({departure, arrival, departureTime, arrivalTime}) {
-
+function Line({ departure, arrival, departureTime, arrivalTime }) {
   const duration = (departureTime, arrivalTime) => {
     const departureTimeSplit = departureTime.split(":");
     const arrivalTimeSplit = arrivalTime.split(":");
-    const departureTimeHour = parseInt(departureTimeSplit[0])*60;
+    const departureTimeHour = parseInt(departureTimeSplit[0]) * 60;
     const departureTimeMinute = parseInt(departureTimeSplit[1]);
     const departureTimeTotalMinutes = departureTimeHour + departureTimeMinute;
-    const arrivalTimeHour = parseInt(arrivalTimeSplit[0])*60;
+    const arrivalTimeHour = parseInt(arrivalTimeSplit[0]) * 60;
     const arrivalTimeMinute = parseInt(arrivalTimeSplit[1]);
     const arrivalTimeTotalMinutes = arrivalTimeHour + arrivalTimeMinute;
     const timeDifference = arrivalTimeTotalMinutes - departureTimeTotalMinutes;
-    const timeDifferenceHour = Math.floor(timeDifference/60);
-    const timeDifferenceMinute = timeDifference%60;
+    const timeDifferenceHour = Math.floor(timeDifference / 60);
+    const timeDifferenceMinute = timeDifference % 60;
     return `${timeDifferenceHour}h ${timeDifferenceMinute}min`;
-  }
+  };
 
   // eslint-disable-next-line no-self-assign
-  departure.includes("Frankfurt") ? departure = "Frankfurt Hbf" : departure = departure;
+  departure.includes("Frankfurt")
+    ? (departure = "Frankfurt Hbf")
+    : (departure = departure);
   // eslint-disable-next-line no-self-assign
-  arrival.includes("Frankfurt") ? arrival = "Frankfurt Hbf" : arrival = arrival;
+  arrival.includes("Frankfurt")
+    ? (arrival = "Frankfurt Hbf")
+    : (arrival = arrival);
   return (
-    <div style={{margin:"30px 0", fontWeight:"bolder"}}>
+    <div style={{ margin: "30px 0", fontWeight: "bolder" }}>
       <div className="info">
         <p>{departure} </p>
         <div className="duration">{duration(departureTime, arrivalTime)}</div>

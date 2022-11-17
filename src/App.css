@@ -1,20 +1,9 @@
-/* @font-face {
-  font-family: "CustomFont";
-  src: url("../assets/fonts/dbscreenhead-black.woff") format("woff"),
-}
-@font-face {
-  font-family: "CustomFont2";
-  src: url("../assets/fonts/dbscreenhead-light.woff") format("woff"),
-}
-@font-face {
-  font-family: "CustomFont3";
-  src: url("../assets/fonts/dbscreensans-digitalregular.woff") format("woff"),
-}
-@font-face {
-  font-family: "CustomFont4";
-  src: url("../assets/fonts/dbscreensanscond-bold.woff") format("woff"),
-} */
 
+@font-face {
+  font-family: "dbscreenhead-black";
+  src: local("dbscreenhead-black"), url("../assets/fonts/dbscreenhead-black.woff") format("woff");
+  font-display: swap;
+}
 
 .App{
   display: flex;
@@ -25,7 +14,6 @@
 .InApp {
   width: 40%;
   padding-left: 30px;
-
 }
 
 .red_line{
@@ -66,7 +54,7 @@ p{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: flex-end;
-  width: 94.4%;
+  width: 94%;
 }
 
 .duration{
@@ -86,7 +74,7 @@ p{
 .time{
   display: flex;
   justify-content: space-between;
-  width: 94.4%;
+  width: 94%;
   margin-top: -9px;
 }
 
@@ -100,5 +88,9 @@ p{
   padding: 8px 10px;
   margin: 10px 15px 0 0;
   cursor: pointer;
+}
+
+h2{
+  font-family:dbscreenhead-black;
 }
 

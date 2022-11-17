@@ -10,4 +10,4 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 app.get('/', (req, res) => res.send(data));
-app.listen(3001, () => console.log(`Example app listening on port ${port}!`));
+app.listen(process.env.PORT || 3001, () => console.log(`Example app listening on port ${port}!`));

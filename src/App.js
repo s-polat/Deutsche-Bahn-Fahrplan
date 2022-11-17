@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import uuid from 'react-uuid';
+import uuid from "react-uuid";
 import "./App.css";
 import Line from "./components/Line.js";
 
@@ -8,8 +8,6 @@ function App() {
   const [fromFrankfurt, setFromFrankfurt] = useState([]);
   const [currentState, setCurrentState] = useState([]);
   const [color, setColor] = useState(false);
-
-console.log(currentState);
 
   useEffect(() => {
     fetch("http://localhost:3001/")
@@ -30,7 +28,7 @@ console.log(currentState);
   const clickHandle = (e) => {
     e.target.value === "von"
       ? setCurrentState(fromFrankfurt, setColor(true))
-      :setCurrentState(toFrankfurt, setColor(false));
+      : setCurrentState(toFrankfurt, setColor(false));
   };
 
   return (
@@ -38,13 +36,22 @@ console.log(currentState);
       <div className="InApp">
         <h2>DB Fahrplananzeige</h2>
         <div className="red_line"></div>
-        <button className="btn" value="von" style={{backgroundColor:color?"#ec001851":"#EC0016"}} onClick={clickHandle}>
+        <button
+          className="btn"
+          value="von"
+          style={{ backgroundColor: color ? "#ec001851" : "#EC0016" }}
+          onClick={clickHandle}
+        >
           von Frankfurt
         </button>
-        <button className="btn" value="nach" style={{backgroundColor:color?"#EC0016":"#ec001851"}} onClick={clickHandle}>
+        <button
+          className="btn"
+          value="nach"
+          style={{ backgroundColor: color ? "#EC0016" : "#ec001851" }}
+          onClick={clickHandle}
+        >
           nach Frankfurt
         </button>
-
         <div>
           {currentState.length > 0 &&
             currentState.map((item) => (
