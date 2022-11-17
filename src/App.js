@@ -11,7 +11,6 @@ function App() {
 
   useEffect(() => {
     fetch("http://localhost:3001/", {
-      mode: 'no-cors',
       method: "GET",
       headers: {
         "Content-Type": "application/json",
