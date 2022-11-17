@@ -76,7 +76,7 @@ p{
   font-weight: lighter;
   justify-self: center;
   position: relative;
-  top: 5px;
+  top: 10px;
 }
 
 .arrival{
@@ -100,10 +100,5 @@ p{
   padding: 8px 10px;
   margin: 10px 15px 0 0;
   cursor: pointer;
-
-}
-
-.btn:hover{
-  background-color:#c90016;
 }
 

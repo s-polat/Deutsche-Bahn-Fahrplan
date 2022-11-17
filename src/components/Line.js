@@ -17,6 +17,11 @@ function Line({departure, arrival, departureTime, arrivalTime}) {
     const timeDifferenceMinute = timeDifference%60;
     return `${timeDifferenceHour}h ${timeDifferenceMinute}min`;
   }
+
+  // eslint-disable-next-line no-self-assign
+  departure.includes("Frankfurt") ? departure = "Frankfurt Hbf" : departure = departure;
+  // eslint-disable-next-line no-self-assign
+  arrival.includes("Frankfurt") ? arrival = "Frankfurt Hbf" : arrival = arrival;
   return (
     <div style={{margin:"30px 0", fontWeight:"bolder"}}>
       <div className="info">

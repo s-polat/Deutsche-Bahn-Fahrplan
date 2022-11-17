@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import uuid from 'react-uuid';
 import "./App.css";
 import Line from "./components/Line.js";
 
@@ -8,6 +9,8 @@ function App() {
   const [currentState, setCurrentState] = useState([]);
   const [color, setColor] = useState(false);
 
+console.log(currentState);
+
   useEffect(() => {
     fetch("http://localhost:3001/")
       .then((res) => res.json())
@@ -16,18 +19,18 @@ function App() {
           item.to.includes("Frankfurt")
         );
         setToFrankfurt(nachFrankfurt);
+        setCurrentState(nachFrankfurt);
         const vonFrankfurt = data.filter((item) =>
           item.from.includes("Frankfurt")
         );
         setFromFrankfurt(vonFrankfurt);
       });
-  }, [currentState]);
+  }, []);
+
   const clickHandle = (e) => {
     e.target.value === "von"
-      ? setCurrentState(toFrankfurt, setColor(true))
-      :setCurrentState(fromFrankfurt, setColor(false));
-      
-      
+      ? setCurrentState(fromFrankfurt, setColor(true))
+      :setCurrentState(toFrankfurt, setColor(false));
   };
 
   return (
@@ -45,10 +48,10 @@ function App() {
         <div>
           {currentState.length > 0 &&
             currentState.map((item) => (
-              <div key={item.to + item.starttime}>
+              <div key={uuid()}>
                 <Line
-                  departure={item.to}
-                  arrival={item.from}
+                  departure={item.from}
+                  arrival={item.to}
                   departureTime={item.starttime}
                   arrivalTime={item.endtime}
                 />
