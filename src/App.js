@@ -10,7 +10,7 @@ function App() {
   const [color, setColor] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3001/", {
+    fetch("https://db-fahrplan-server.vercel.app/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
